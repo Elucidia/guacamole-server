@@ -341,6 +341,16 @@ typedef struct guac_rdp_settings {
      */
     char* preconnection_blob;
 
+    /**
+     * ID of the monitors
+     */
+    char* monitors;
+
+    /**
+     * Support for multimon (boolean)
+     */
+    int multimon;
+
 #ifdef ENABLE_COMMON_SSH
     /**
      * Whether SFTP should be enabled for the VNC connection.

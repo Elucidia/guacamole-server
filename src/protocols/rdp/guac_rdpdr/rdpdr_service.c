@@ -102,6 +102,10 @@ void guac_rdpdr_process_connect(rdpSvcPlugin* plugin) {
     if (rdp_client->settings->drive_enabled)
         guac_rdpdr_register_fs(rdpdr, rdp_client->settings->drive_name);
 
+    /* Check up if multimon is there*/ //TODO JPG Debug purpose
+    if (rdp_client->settings->multimon)
+        guac_client_log(client, GUAC_LOG_INFO, "Multimon arg is online");
+
     /* Log that printing, etc. has been loaded */
     guac_client_log(client, GUAC_LOG_INFO, "guacdr connected.");
 

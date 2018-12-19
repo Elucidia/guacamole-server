@@ -79,6 +79,8 @@ const char* GUAC_RDP_CLIENT_ARGS[] = {
     "disable-glyph-caching",
     "preconnection-id",
     "preconnection-blob",
+    "monitors",
+    "multimon",
 
 #ifdef ENABLE_COMMON_SSH
     "enable-sftp",
@@ -355,6 +357,16 @@ enum RDP_ARGS_IDX {
      * destination VM.
      */
     IDX_PRECONNECTION_BLOB,
+
+    /**
+     * The ID of the monitors (0,1)
+     */
+    IDX_MONITORS,
+
+    /**
+     * Support for the multiple monitors
+     */
+    IDX_MULTIMON,
 
 #ifdef ENABLE_COMMON_SSH
     /**
@@ -811,6 +823,16 @@ guac_rdp_settings* guac_rdp_parse_args(guac_user* user,
     settings->printer_name =
         guac_user_parse_args_string(user, GUAC_RDP_CLIENT_ARGS, argv,
                 IDX_PRINTER_NAME, "Guacamole Printer");
+
+    /*Multimon enabled*/
+    settings->multimon =
+        guac_user_parse_args_boolean(user, GUAC_RDP_CLIENT_ARGS, argv,
+                IDX_MULTIMON, 0);
+
+    /*Monitor ID*/
+    settings->monitors =
+        guac_user_parse_args_string(user, GUAC_RDP_CLIENT_ARGS, argv,
+                IDX_MONITORS, "1");
 
     /* Drive enable/disable */
     settings->drive_enabled =
